@@ -6,3 +6,4 @@ class(on_stop_id)
 table(on_stop_id)
 data$on_stop_id[[527]]
 library(dplyr)
+test <- arrange(data,on_stop_id)
