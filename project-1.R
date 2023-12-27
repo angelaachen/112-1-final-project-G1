@@ -16,7 +16,7 @@ data$sum_of_txn_times <- as.numeric(data$sum_of_txn_times)
 sum_of_txn_times_numbered_on_stop <- 
   data |> dplyr::group_by(on_stop) |>
   dplyr::summarise(
-sum_of_txn_times = sum(sum_of_txn_times)
+    sum_of_txn_times = sum(sum_of_txn_times)
   )  |> arrange(desc(sum_of_txn_times))
 
 sum_of_txn_times_numbered_off_stop <- 
@@ -38,10 +38,21 @@ sum_of_txn_times_numbered_district_destination <-
     sum_of_txn_times = sum(sum_of_txn_times)
   )  |> arrange(desc(sum_of_txn_times))
 
-#改變sum_of_txn_times_numbered_district_destination/origin屬性----
-as.numeric(sum_of_txn_times_numbered_district_destination$sum_of_txn_times)
-as.numeric(sum_of_txn_times_numbered_district_origin$sum_of_txn_times)
-
 #加總、占比----
 SDS <- sum(sum_of_txn_times_numbered_district_destination$sum_of_txn_times)
 SOS <- sum(sum_of_txn_times_numbered_district_origin$sum_of_txn_times)
+
+#前十站點借還比例----
+站點還前十加總<-sum_of_txn_times_numbered_off_stop$sum_of_txn_times[c(1,2,3,4,5,6,7,8,9,10)] |> sum()
+站點還前十比例<-站點還前十加總/SDS
+站點借前十加總<-sum_of_txn_times_numbered_on_stop$sum_of_txn_times[c(1,2,3,4,5,6,7,8,9,10)]|> sum()
+站點借前十比例<-站點借前十加總/SOS
+
+#後十站點借還比例----
+站點還後十加總<-sum_of_txn_times_numbered_off_stop$sum_of_txn_times[c(2155,2156,2157,2158,2159,2160,2161,2162,2163,2164)]|>sum()
+站點還後十比例<-站點還後十加總/SDS
+站點借後十加總<-sum_of_txn_times_numbered_on_stop$sum_of_txn_times[c(1280,1281,1282,1283,1284,1285,1286,1287,1288,1289)]|>sum()
+站點借後十比例<-站點借後十加總/SOS
+
+
+
