@@ -82,3 +82,4 @@ sum(大安區資料$sum_of_txn_times)
 sum(sum_of_txn_times_numbered_district_destination_大安區$sum_of_txn_times)
 #第一名占比
 在大安區借車的還車還在哪最多 <- sum_of_txn_times_numbered_district_destination_大安區$sum_of_txn_times[[1]] / sum(sum_of_txn_times_numbered_district_destination_大安區$sum_of_txn_times)
+
